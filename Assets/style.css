@@ -1,0 +1,13 @@
+html, body, .container-fluid, .content-row{
+    height: 100%;
+    
+}
+.navbar{
+    padding: 1%;
+    
+}
+
+.h1{
+font-weight: bolder;
+font-size:  30px;
+}
