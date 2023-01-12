@@ -15,7 +15,7 @@ function deleteCities() {
 //This function gets the current weather conditions for the selected city from the API
 function currentFutureWeather(city) {
   const apiKey = "14bc642e7fbec16847712fb8685896f0";
-  var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
+  var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
   $.ajax({
     url: queryURL,
     method: "GET",
