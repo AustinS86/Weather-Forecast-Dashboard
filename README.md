@@ -21,4 +21,4 @@
 ## Link to deployed Application
 - https://austins86.github.io/Weather-Forecast-Dashboard/
 ## Screenshot
-![]
+![weather-dashboard-screenshot](https://user-images.githubusercontent.com/117120566/212192846-ba435c4a-9b76-443a-909a-01a6d118345e.jpg)
