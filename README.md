@@ -11,7 +11,7 @@
 
 ## Coding Tools Used
 - HTML
-- CSS-
+- CSS
 - JavaScript
 - Bootstrap
 - jQuery
