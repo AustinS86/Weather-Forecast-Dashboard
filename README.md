@@ -19,6 +19,6 @@
 - OpenWeatherAPI
 
 ## Link to deployed Application
-
+- https://austins86.github.io/Weather-Forecast-Dashboard/
 ## Screenshot
 ![]
