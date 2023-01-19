@@ -22,4 +22,4 @@
 - https://austins86.github.io/Weather-Forecast-Dashboard/
 ## Screenshot
 ![weather-dashboard-screenshot](https://user-images.githubusercontent.com/117120566/212192846-ba435c4a-9b76-443a-909a-01a6d118345e.jpg)
-![image](https://user-images.githubusercontent.com/117120566/213563092-771f4e58-1da9-417a-8f18-7840ce7edbea.png)
+
