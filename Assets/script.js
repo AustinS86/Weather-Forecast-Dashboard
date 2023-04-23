@@ -6,7 +6,7 @@ var citiesButton = $("#search-button");
 //When you click the button it will display the current and future weather
 citiesButton.on("click", displayWeather);
 
-//This will delete searches from localstorage
+//This will delete searches from localstorage/the list of cities from the page
 function deleteCities() {
   localStorage.clear();
   var cityList = document.getElementById("city-list");
@@ -125,6 +125,7 @@ function displayWeather(event) {
       list.setAttribute("id", "city-link");
       list.textContent = searchCities[i];
       cityList.appendChild(list);
+      //This will let you click on the city and display the current and future weather
       list.addEventListener("click", function () {
         currentFutureWeather(searchCities[i]);
       });
