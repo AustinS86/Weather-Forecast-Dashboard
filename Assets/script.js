@@ -1,6 +1,5 @@
-
 var current = dayjs();
-var currentDay = (current.format("MM/DD/YYYY"));
+var currentDay = current.format("MM/DD/YYYY");
 var city = "";
 var listofCities = $("#search-city");
 var citiesButton = $("#search-button");
@@ -10,7 +9,8 @@ citiesButton.on("click", displayWeather);
 //This will delete searches from localstorage
 function deleteCities() {
   localStorage.clear();
-
+  var cityList = document.getElementById("city-list");
+  cityList.innerHTML = "";
 }
 //This function gets the current weather conditions for the selected city from the API
 function currentFutureWeather(city) {
@@ -20,25 +20,29 @@ function currentFutureWeather(city) {
     url: queryURL,
     method: "GET",
   }).then(function (weatherData) {
-
     var weatherIcon = weatherData.weather[0].icon;
-    var iconurl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+    var iconurl =
+      "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
     var current = dayjs();
     var city = document.getElementById("current-city");
-    city.innerHTML = (weatherData.name + " " + "(" + current.format("MM/DD/YYYY") + ")" + '<img src="' + iconurl + '">');
-
+    city.innerHTML =
+      weatherData.name +
+      " " +
+      "(" +
+      current.format("MM/DD/YYYY") +
+      ")" +
+      '<img src="' +
+      iconurl +
+      '">';
 
     var temp = document.getElementById("temperature");
-    temp.textContent = "Temperature: " +
-      weatherData.main.temp + "F";
+    temp.textContent = "Temperature: " + weatherData.main.temp + "F";
 
     var humidity = document.getElementById("humidity");
-    humidity.textContent = "Humidity: " +
-      weatherData.main.humidity + "%";
+    humidity.textContent = "Humidity: " + weatherData.main.humidity + "%";
 
     var wind = document.getElementById("wind-speed");
-    wind.textContent = "Wind Speed: " +
-      weatherData.wind.speed + " MPH";
+    wind.textContent = "Wind Speed: " + weatherData.wind.speed + " MPH";
 
     var lat = weatherData.coord.lat;
     var lon = weatherData.coord.lon;
@@ -55,7 +59,7 @@ function currentFutureWeather(city) {
 
         var unix = forecastData.daily[i].dt;
         var date = new Date(unix * 1000);
-        var forecastDate = dayjs(date).format('MM/DD/YYYY');
+        var forecastDate = dayjs(date).format("MM/DD/YYYY");
 
         var div1 = document.createElement("div");
         div1.setAttribute("class", "col-sm");
@@ -69,8 +73,13 @@ function currentFutureWeather(city) {
         para1.textContent = forecastDate;
         div2.appendChild(para1);
 
-        var img2 = document.createElement('img');
-        img2.setAttribute("src", "https://openweathermap.org/img/wn/" + forecastData.daily[i].weather[0].icon + "@2x.png");
+        var img2 = document.createElement("img");
+        img2.setAttribute(
+          "src",
+          "https://openweathermap.org/img/wn/" +
+            forecastData.daily[i].weather[0].icon +
+            "@2x.png"
+        );
         img2.setAttribute("alt", forecastData.daily[i].weather[0].description);
         div2.appendChild(img2);
 
@@ -84,10 +93,9 @@ function currentFutureWeather(city) {
         div2.appendChild(ptag3);
         ptag3.textContent = "Humidity:" + forecastHumidity + "%";
       }
-    })
+    });
   });
-};
-
+}
 
 // This displays the weather after calling the function
 function displayWeather(event) {
@@ -97,7 +105,6 @@ function displayWeather(event) {
     currentFutureWeather(city);
     var cityList = document.getElementById("city-list");
     cityList.textContent = "";
-    
 
     //This function stores the searched cities in localstorage
     var searchCities = localStorage.getItem("searchedCities");
@@ -107,19 +114,20 @@ function displayWeather(event) {
       searchCities = JSON.parse(searchCities);
     }
     searchCities.push(city);
-  
 
-  
     //This creates a list of chosen cites in the local storage
     var chosenCities = JSON.stringify(searchCities);
     localStorage.setItem("searchedCities", chosenCities);
-    
+
     for (let i = 0; i < searchCities.length; i++) {
       var list = document.createElement("li");
       list.setAttribute("class", "list-group-item");
       list.setAttribute("id", "city-link");
       list.textContent = searchCities[i];
       cityList.appendChild(list);
+      list.addEventListener("click", function () {
+        currentFutureWeather(searchCities[i]);
+      });
     }
   }
 }
